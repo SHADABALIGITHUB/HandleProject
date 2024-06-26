@@ -1,36 +1,34 @@
 import { useState } from "react"
+import Navbar from "./Components/Navbar/Navbar";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import {MyTheme}  from "./Context/MyTheme";
 
 function App() {
-  const [theme, setDark] = useState('red');
+  const [Theme, settheme] = useState('light');
 
-  const toggle = () => {
-    if (theme === 'red') {
-      setDark('dark')
-    } else {
-      setDark('red')
-    }
+ 
+  const setTheme = (theme) => {
+    settheme(theme);
   }
 
+
   return (
-    <div className={`${theme} max-auto h-screen p-4 font-serif flex justify-center items-center font-bold text-black bg-gradient-to-b from-background to-copy_primary`}>
+    <MyTheme.Provider value={{Theme,setTheme}}>
+     <div className={`${Theme}`}>
+      <Navbar/>
+      <Dashboard/>
+   
+   
+    </div>
 
-      <div className="w-96 h-96 flex flex-col items-center gap-10 shadow-lg bg-copy_secondary shadow-copy_secondary rounded-2xl p-10">  
-        <h1 className="text-3xl text-mytext3 text-center">Hello World
-        <p> welcome To Testnig TailwindCss </p>
-        </h1>
-        <button onClick={toggle} className="text-center bg-mytext3 text-mytext2 p-2 rounded-xl">Toggle</button>
-      </div>
-
+    </MyTheme.Provider>
 
 
 
 
       
 
-
-
-    </div>
   )
 }
 
-export default App
+export default App;
