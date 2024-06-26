@@ -1,11 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import Dashboard from './Components/Dashboard/Dashboard.jsx'
+import About from './Components/About/About.jsx'
+import Login from './Components/Login/Login.jsx'
+import Settings from './Components/Settings/Settings.jsx'
+import Register from './Components/Register/Register.jsx'
 import './index.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+
+          <Route path='' element={<Dashboard/>} />
+          <Route path='about' element={<About/>} />
+          <Route path='blog'  element={<Settings/>} />
+
+
+
+
+        </Route>
+
+
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+
+      </Routes>
+    </BrowserRouter>
+
+
   </React.StrictMode>,
 )

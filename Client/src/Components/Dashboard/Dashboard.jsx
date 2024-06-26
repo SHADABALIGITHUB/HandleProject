@@ -9,7 +9,7 @@ const {Theme,setTheme} = useContext(MyTheme);
 
 
   return (
-    <div className={`${Theme} container mx-auto flex-wrap gap-10 p-4 font-serif flex justify-center items-center font-bold text-black bg-gradient-to-r from-background to-copy_primary`}>
+    <div className={`${Theme} container mx-auto flex-wrap gap-10 p-4 font-serif flex justify-center items-center font-bold text-black bg-background`}>
     
     <div className="w-96 h-96 flex flex-col items-center gap-10 shadow-lg bg-copy_secondary shadow-copy_secondary rounded-2xl p-10">  
       <h1 className="text-3xl text-mytext text-center">Hello World
