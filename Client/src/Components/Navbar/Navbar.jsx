@@ -1,15 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Menu,CircleX } from 'lucide-react'
 import {Link} from 'react-router-dom'
 const NavbarComponent = () => {
-   const [sidebarOpen, setSidebarOpen] = useState(false);
+  //  const [sidebarOpen, setSidebarOpen] = useState(false);
   
     const ToggleSidebar=()=>{
 
     }
     
-
   return (
     
 
