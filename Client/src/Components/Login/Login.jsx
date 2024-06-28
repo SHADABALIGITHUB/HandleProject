@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axiosInstance from '../../lib/axiosInstance';
+import toast from "react-hot-toast";
 
 const Login = () => {
+
+  const [user, setUser] = useState({email: "", password: "" });
   const navigate = useNavigate()
   const redirecttoRegister = () => {
      navigate('/register')
@@ -9,6 +13,26 @@ const Login = () => {
   }
   const login = () => {
     console.log('login')
+  }
+
+  const handleClick = async () => {
+    try {
+      const res = await axiosInstance.post("/auth/login",user);
+      if(res.data.success===true){
+        toast.success(res.data.message);
+        navigate(`/dashboard`);
+      }
+      else{
+        toast.error(res.data.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    setUser({...user,[name]:value})
   }
   return (
     <div id='tsparticle' style={{}}  className='w-screen h-screen bg-gradient-to-tr to-zinc-600 from-slate-950 flex justify-center items-center'>
@@ -32,13 +56,16 @@ const Login = () => {
         <div className="space-y-5">
           <div>
             <label className="text-sm font-medium">
-              Email / Username
+              Email
             </label>
             <div className="mt-2">
               <input
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder="Email"
                 type="email"
+                name='email'
+                value={user.email}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -60,6 +87,9 @@ const Login = () => {
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder="Password"
                 type="password"
+                name='password'
+                value={user.password}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -67,6 +97,7 @@ const Login = () => {
             <button
               className="inline-flex w-full items-center justify-center rounded-md bg-white px-3.5 py-2.5 font-semibold leading-7 text-black hover:bg-white/80"
               type="button"
+              onClick={handleClick}
             >
               Login
             </button>

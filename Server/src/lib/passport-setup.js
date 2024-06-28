@@ -1,13 +1,14 @@
 // const express = require("express");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oidc");
-const User = require("../modules/user-model");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const User = require("../models/user-model");
+
+// console.log(process.env.CLIENT_ID);
 
 passport.use(new GoogleStrategy({
-    clientId:process.env.CLIENT_ID,
+    clientID:process.env.CLIENT_ID,
     clientSecret:process.env.CLIENT_SECRET,
-    callbackUrl:"/auth/google/callback",
-    scope:['profile']
+    callbackURL:"/auth/google/callback"
 }, async function verify(accessToken, refreshToken, profile, cb){
     console.log(profile)
 

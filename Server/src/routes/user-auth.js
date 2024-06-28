@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../modules/user-model.js");
+const User = require("../models/user-model.js");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const sendMail = require("../lib/send-mail.js");
@@ -7,7 +7,7 @@ const generateOtp = require("../lib/generateOtp.js");
 
 router.post("/signup", async (req,res)=>{
     try {
-        const reqBody = req.body();
+        const reqBody = req.body;
 
         const user = await User.findOne({email:reqBody.email});
         if(user){
@@ -23,8 +23,9 @@ router.post("/signup", async (req,res)=>{
         return res.status(200).json({message:"Otp has been sent to email for verification",success:true});
         
     } catch (error) {
+        console.log(error);
         res.status(500).json({error,message:"Internal server error"});
-        res.redirect(`${process.env.VITE_APP_URL}/servererror`);
+        // res.redirect(`${process.env.VITE_APP_URL}/servererror`);
     }
 })
 
@@ -40,7 +41,7 @@ router.post("/verify", async (req,res)=>{
 
     } catch (error) {
         res.status(500).json({error,message:"Internal server error"});
-        res.redirect(`${process.env.VITE_APP_URL}/servererror`);
+        // res.redirect(`${process.env.VITE_APP_URL}/servererror`);
     }
 })
 
@@ -53,13 +54,13 @@ router.patch("/verify/resend",async (req,res)=>{
         return res.status(200).json({message:"Otp resended to email",success:true});
     } catch (error) {
         res.status(500).json({error,message:"Internal server error"});
-        res.redirect(`${process.env.VITE_APP_URL}/servererror`);
+        // res.redirect(`${process.env.VITE_APP_URL}/servererror`);
     }
 })
 
 router.post("/login", async(req,res)=>{
     try {
-        const {email,password} = req.body();
+        const {email,password} = req.body;
 
         const user = await User.findOne({email});
         if(!user){
@@ -73,11 +74,12 @@ router.post("/login", async(req,res)=>{
 
         // res.cookie("id",user.id,{maxAge:60*60*24*1000, signed:true, httpOnly:true})
         req.session.userId = user.id;
-        res.status(200).json({message:"User successfully logged in"});
+        res.status(200).json({message:"Logged in successfully",success:true});
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({error,message:"Internal server error"});
-        res.redirect(`${process.env.VITE_APP_URL}/servererror`);
+        // res.redirect(`${process.env.VITE_APP_URL}/servererror`);
     }
 })
 

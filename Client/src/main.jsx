@@ -10,11 +10,13 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
+import { Toaster } from 'react-hot-toast'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-
+    <>
+    <Toaster position="top-center"/>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -36,6 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       </Routes>
     </BrowserRouter>
+    </>
 
 
   </React.StrictMode>,
