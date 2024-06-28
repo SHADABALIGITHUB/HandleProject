@@ -1,5 +1,5 @@
-const express = require("express")();
-require("dotenv").config({path:"./env"});
+const express = require("express");
+require("dotenv").config({path:"src/.env"});
 const cors = require("cors");
 const user = require("./routes/user-auth.js");
 const connect = require("./lib/dbconfig.js");

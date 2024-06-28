@@ -1,0 +1,36 @@
+.circular-path {
+    position: relative;
+    width: 400px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+    animation: rotate 20s linear infinite;
+  }
+  
+  .circular-image {
+    position: absolute;
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 50%;
+    padding:5%;
+    object-fit: cover;
+  }
+ /* Position images in a circular path */
+.circular-path img:nth-child(1) { top: 0; left: 42%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(2) { top: 14%; left: 56%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(3) { top: 28%; left: 70%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(4) { top: 42%; left: 84%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(5) { top: 56%; left: 70%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(6) { top: 70%; left: 56%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(7) { top: 84%; left: 42%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(8) { top: 70%; left: 28%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(9) { top: 56%; left: 14%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(10) { top: 42%; left: 0%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(11) { top: 28%; left: 14%; transform: translate(-50%, -50%); }
+.circular-path img:nth-child(12) { top: 14%; left: 28%; transform: translate(-50%, -50%); }
+/* .circular-path img:nth-child(13) { top: 14%; left: 80%; transform: translate(-50%, -50%); } */
+
+
+  /* @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } */
+  
