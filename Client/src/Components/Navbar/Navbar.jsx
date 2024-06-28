@@ -1,22 +1,21 @@
 import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Menu,CircleX } from 'lucide-react'
 import {Link} from 'react-router-dom'
 const NavbarComponent = () => {
-   const [sidebarOpen, setSidebarOpen] = useState(false);
+  //  const [sidebarOpen, setSidebarOpen] = useState(false);
   
     const ToggleSidebar=()=>{
 
     }
     
-
   return (
     
 
 <nav className="bg-copy_secondary border-gray-200">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <div className="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="Logo.png" className="h-8" alt="Flowbite Logo" />
+      <img src="Logo.png" className="h-8 bg-mytext rounded-full p-1" alt="Flowbite Logo" />
       <span className="self-center text-2xl font-semibold whitespace-nowrap text-mytext">Kaisen</span>
   </div>
   <div className="flex items-center md:order-2 gap-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

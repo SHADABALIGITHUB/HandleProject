@@ -1,6 +1,8 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 .dark{
   --background : 40 40 40; 

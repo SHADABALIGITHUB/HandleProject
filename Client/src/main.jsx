@@ -8,6 +8,8 @@ import Settings from './Components/Settings/Settings.jsx'
 import Register from './Components/Register/Register.jsx'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import PageNotFound from './Components/Error/PageNotFound.jsx'
+import LandingPage from './Components/LandingPage/LandingPage.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -29,6 +31,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/pasti" element={<LandingPage/>} />
+        <Route path="*" element={<PageNotFound/>} />
 
       </Routes>
     </BrowserRouter>

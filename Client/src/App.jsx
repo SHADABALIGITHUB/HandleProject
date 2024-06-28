@@ -15,7 +15,7 @@ function App() {
 
   return (
     <MyTheme.Provider value={{Theme,setTheme}}>
-      <div className={`${Theme} bg-background flex flex-col`}>
+      <div className={`${Theme} bg-background flex flex-col min-h-screen`}>
       <Navbar/>
       
       <Outlet/> 

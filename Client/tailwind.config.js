@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+       Google1:['Black Ops One'],
+       Google2:['Blinker'],
+      },
       colors: {
         background: "rgba(var(--background))",
         border: "rgba(var(--border))",
