@@ -10,10 +10,10 @@ passport.use(new GoogleStrategy({
     clientSecret:process.env.CLIENT_SECRET,
     callbackURL:"/auth/google/callback"
 }, async function verify(accessToken, refreshToken, profile, cb){
-    console.log(profile)
+    // console.log(profile)
 
     try {
-        const user = await User.findOne({googleId:profile.id})
+        const user = await User.findOne({email:profile.emails[0].value})
         if(!user){
             const newUser = await new User({
                 displayName:profile.displayName,
@@ -21,13 +21,20 @@ passport.use(new GoogleStrategy({
                 firstName:profile.name.givenName,
                 lastName:profile.name.familyName,
                 profilePhoto:profile.photos[0].value,
-                email:profile.emails[0].value
+                email:profile.emails[0].value,
+                isverified:true
             }).save();
             if(newUser){
                 cb(null, newUser);
             }
         }
         else{
+            user.displayName=profile.displayName;
+            user.googleId=profile.id,
+            user.firstName=profile.name.givenName;
+            user.lastName=profile.name.familyName;
+            user.profilePhoto=profile.photos[0].value,
+            await user.save();
             cb(null, user);
         }
         

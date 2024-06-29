@@ -34,9 +34,13 @@ router.post("/verify", async (req,res)=>{
         const {email,otp} = req.body;
         const user = await User.findOne({email});
 
-        if(otp!==this.user.otp){
+        if(otp!==user.isverifiedtoken){
             return res.status(400).json({error:"Incorrect OTP",success:false});
         }
+
+        user.isverified=true;
+        user.isverifiedtoken = null;
+        await user.save();
         return res.status(200).json({message:"Verification successfull",success:true});
 
     } catch (error) {
@@ -95,11 +99,17 @@ router.get('/status',(req,res)=>{
     }
 })
 
-router.get("/google",passport.authenticate("google"));
+router.get("/google",passport.authenticate("google",{scope:['profile','email']}));
 
 router.get("/google/callback",passport.authenticate("google",{
-    successRedirect:`${process.env.VITE_APP_URL}/dashboard`,
-    failureRedirect:`${process.env.VITE_APP_URL}/login`
-}))
+    failureRedirect:`${process.env.VITE_APP_URL}/register`,failureMessage:true
+}),(req,res)=>{
+    res.redirect(`${process.env.VITE_APP_URL}/dashboard`);
+})
+
+router.get("/logout",(req,res)=>{
+    req.logOut();
+    res.redirect(`${process.env.VITE_APP_URL}/login`)
+})
 
 module.exports = router;

@@ -7,16 +7,21 @@ import Login from './Components/Login/Login.jsx'
 import Settings from './Components/Settings/Settings.jsx'
 import Register from './Components/Register/Register.jsx'
 import './index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
-<<<<<<< HEAD
 import { Toaster } from 'react-hot-toast'
-=======
 import Otp from './Components/OTP/Otp.jsx'
->>>>>>> origin/main
+import axiosInstance from './lib/axiosInstance.js'
 
-
+const isAuthenticated = async ()=>{
+  try {
+    const res = await axiosInstance.get("/auth/status");
+    return res.data.authenticated;
+  } catch (error) {
+    console.log(error);
+  }
+}
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <>
@@ -25,7 +30,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />}>
 
-          <Route path='' element={<Dashboard/>} />
+          {/* <Route path='' element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>}/> */}
+          <Route path='' element={<Dashboard/>}/>
           <Route path='about' element={<About/>} />
           <Route path='blog'  element={<Settings/>} />
 
@@ -35,11 +41,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Route>
 
 
+        {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
         <Route path="/login" element={<Login/>} />
+        {/* <Route path="/register" element={isAuthenticated?<Navigate to="/dashboard"/>:<Register/>} /> */}
         <Route path="/register" element={<Register/>} />
         <Route path="/pasti" element={<LandingPage/>} />
         <Route path="*" element={<PageNotFound/>} />
-        <Route path="/auth/otp" element={<Otp/>} />
+        <Route path="/auth/otp/:email" element={<Otp/>} />
 
       </Routes>
     </BrowserRouter>

@@ -1,18 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './otp.module.css'
+import axiosInstance from '../../lib/axiosInstance';
+import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const Otp = () => {
+
+  const navigate = useNavigate();
+  const {email} = useParams();
+  const [otp,setOtp] = useState('');
+  const handleChange = (e) => {
+    const temp = otp+e.target.value;
+    setOtp(temp);
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axiosInstance.post("/auth/verify",{email,otp});
+      if(res.data.success===true){
+        toast.success("Verification successfull. Please login to your account");
+        navigate("/dashboard");
+      }
+      else{
+        toast.error(res.data.error);
+      }
+    } catch (error) {
+      toast.error("Internal server error");
+    }
+  }
+ 
   return (
     <div className='w-screen h-screen flex justify-center items-center bg-black'>
         <form className={`${style.form} font-Google2 w-48 h-48`}>
   <div className={style.content}>
     <p align="center">OTP Verification</p>
     <div className={style.inp}>
-      <input placeholder="" type="text" className={style.input} maxLength={1} />
-      <input placeholder="" type="text" className={style.input} maxLength={1} />
-      <input placeholder="" type="text" className={style.input} maxLength={1} />
-      <input placeholder="" type="text" className={style.input} maxLength={1} />
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
     </div>
-    <button>Verify</button>
+    <button onClick={handleClick}>Verify</button>
     <svg
       className={style.svg}
       viewBox="0 0 200 200"

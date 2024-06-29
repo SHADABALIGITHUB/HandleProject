@@ -16,7 +16,7 @@ const Register = () => {
       const res = await axiosInstance.post("/auth/signup",user);
       if(res.data.success===true){
         toast.success(res.data.message);
-        navigate(`/verify/${user.email}`);
+        navigate(`/auth/otp/${user.email}`);
       }
       else{
         toast.error(res.data.error);
@@ -24,6 +24,10 @@ const Register = () => {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleOauth = async () => {
+    window.open(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/google`,'_self');
   }
 
   const handleChange = (e) => {
@@ -123,6 +127,7 @@ const Register = () => {
               <button
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                 type="button"
+                onClick={handleOauth}
               >
                 <span className="mr-2 inline-block">
                   <svg
