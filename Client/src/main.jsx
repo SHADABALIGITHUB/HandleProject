@@ -10,11 +10,8 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
-<<<<<<< HEAD
 import { Toaster } from 'react-hot-toast'
-=======
 import Otp from './Components/OTP/Otp.jsx'
->>>>>>> origin/main
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
