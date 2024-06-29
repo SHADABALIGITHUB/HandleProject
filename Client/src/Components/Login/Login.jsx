@@ -12,7 +12,7 @@ const Login = () => {
     console.log('redirect to register')
   }
   const login = () => {
-    console.log('login')
+    console.log('/login')
   }
 
   const handleClick = async () => {
@@ -35,7 +35,7 @@ const Login = () => {
     setUser({...user,[name]:value})
   }
   return (
-    <div id='tsparticle' style={{}}  className='w-screen h-screen bg-gradient-to-tr to-zinc-600 from-slate-950 flex justify-center items-center'>
+    <div id='tsparticle' className='w-screen h-screen bg-gradient-to-tr to-zinc-600 from-slate-950 flex justify-center items-center'>
 
 
 <section>
