@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const sendMail = require("../lib/send-mail.js");
 const generateOtp = require("../lib/generateOtp.js");
+const jwt = require("jsonwebtoken");
 
 router.post("/signup", async (req,res)=>{
     try {
@@ -17,7 +18,10 @@ router.post("/signup", async (req,res)=>{
         const hashedPassword = await bcrypt.hash(reqBody.password,10);
         const otp = generateOtp();
         const userData = {username:reqBody.username, email:reqBody.email, password:hashedPassword, isverifiedtoken:otp};
-        await User.create(userData);
+
+        const token = jwt.sign(userData,process.env.SESSION_SECRET);
+        res.cookie("token",token,{maxAge:5*60000,httpOnly:true})
+        // await User.create(userData);
 
         sendMail({email:reqBody.email, otp});
         return res.status(200).json({message:"Otp has been sent to email for verification",success:true});
@@ -31,16 +35,22 @@ router.post("/signup", async (req,res)=>{
 
 router.post("/verify", async (req,res)=>{
     try {
-        const {email,otp} = req.body;
-        const user = await User.findOne({email});
+        const token = req.cookies.token;
+        const userData = jwt.decode(token);
+        res.clearCookie("token");
+        // console.log(userData);
+        const {otp} = req.body;
+        // const user = await User.findOne({email:userData.email});
 
-        if(otp!==user.isverifiedtoken){
+        if(otp!==userData.isverifiedtoken){
             return res.status(400).json({error:"Incorrect OTP",success:false});
         }
 
-        user.isverified=true;
-        user.isverifiedtoken = null;
-        await user.save();
+        userData.isverified=true;
+        userData.isverifiedtoken = null;
+        // console.log(userData);
+        await User.create(userData);
+        // await user.save();
         return res.status(200).json({message:"Verification successfull",success:true});
 
     } catch (error) {
@@ -91,11 +101,12 @@ router.post("/login", async(req,res)=>{
 // TODO : Oauth to be tested
 
 router.get('/status',(req,res)=>{
+    // console.log(req);
     if(req.user){
-        res.status(200).json({authenticated:true, user:req.user});
+        return res.status(200).json({authenticated:true, user:req.user});
     }
     else{
-        res.status(401).json({authenticated:false});
+        return res.status(401).json({authenticated:false});
     }
 })
 

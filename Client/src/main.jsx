@@ -15,16 +15,15 @@ import Otp from './Components/OTP/Otp.jsx'
 import axiosInstance from './lib/axiosInstance.js'
 // import Test from './Components/OTP/Test.jsx'
 
-
 const isAuthenticated = async ()=>{
   try {
     const res = await axiosInstance.get("/auth/status");
-     console.log(res.data.authenticated);
     return res.data.authenticated;
   } catch (error) {
     console.log(error);
   }
 }
+// console.log(await isAuthenticated());
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <>
@@ -35,9 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
          <Route element={<App />}>
 
           
-          <Route path='/dashboard' element={isAuthenticated ? <Dashboard/>:<Login/>}/>
+          <Route path='/dashboard' element={await isAuthenticated() ? <Dashboard/>:<Navigate to="/login"/>}/>
           <Route path='/about' element={<About/>} />
-          <Route path='/blog'  element={<Settings/>} />
+          <Route path='/blog' element={<Settings/>} />
 
 
 
@@ -46,10 +45,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
         {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
-        <Route path="/" element={<LandingPage/>} />
+        <Route path="/" element={await isAuthenticated()?<Navigate to="/dashboard"/>:<LandingPage/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/auth/otp/:email" element={<Otp/>} />
+        <Route path="/auth/otp" element={<Otp/>} />
         <Route path="*" element={<PageNotFound/>} />
         {/*<Route path="/testing" element={<Test/>} />*/}
 

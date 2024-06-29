@@ -16,7 +16,7 @@ const Register = () => {
       const res = await axiosInstance.post("/auth/signup",user);
       if(res.data.success===true){
         toast.success(res.data.message);
-        navigate(`/auth/otp/${user.email}`);
+        navigate(`/auth/otp`);
       }
       else if(res.data.success===false){
         toast.success(res.data.message);

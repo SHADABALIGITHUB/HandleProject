@@ -6,7 +6,10 @@ const UserSchema = mongoose.Schema({
     },
     googleId:{
         type:String,
-        unique:true
+        index:{
+            unique:true,
+            partialFilterExpression:{googleId:{$exists:true, $ne:null}}
+        }
     },
     // username:{
     //     type:String,
