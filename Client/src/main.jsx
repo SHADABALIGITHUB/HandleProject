@@ -12,11 +12,7 @@ import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
-<<<<<<< HEAD
 import axiosInstance from './lib/axiosInstance.js'
-=======
-
->>>>>>> origin/main
 
 const isAuthenticated = async ()=>{
   try {
