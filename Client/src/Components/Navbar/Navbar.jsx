@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Menu,CircleX } from 'lucide-react'
 import {Link} from 'react-router-dom'
-const NavbarComponent = () => {
+const NavbarComponent = ({Name}) => {
   //  const [sidebarOpen, setSidebarOpen] = useState(false);
     const [userprofileimage, setUserprofileimage] = useState('vite.svg');
     const ToggleSidebar=()=>{
@@ -58,7 +58,7 @@ const NavbarComponent = () => {
         <Link to="/dashboard" className="block py-2 px-3 text-mytext rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Pricing</Link>
       </li>
       <li>
-        <Link to="*" className="block py-2 px-3 text-mytext rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Contact</Link>
+        <Link to="*" className="block py-2 px-3 text-mytext rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Welcome <span className='text-purple-600'>{Name}</span></Link>
       </li>
     </ul>
   </div>
