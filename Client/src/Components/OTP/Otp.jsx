@@ -1,32 +1,30 @@
 import React, { useState } from 'react'
 import style from './otp.module.css'
 import axiosInstance from '../../lib/axiosInstance';
-import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 const Otp = () => {
 
   const navigate = useNavigate();
-  const {email} = useParams();
   const [otp,setOtp] = useState('');
   const handleChange = (e) => {
-    const temp = otp+e.target.value;
-    setOtp(temp);
+    setOtp(e.target.value);
   }
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const res = await axiosInstance.post("/auth/verify",{email,otp});
+      const res = await axiosInstance.post("/auth/verify",{otp});
       if(res.data.success===true){
         toast.success("Verification successfull. Please login to your account");
-        navigate("/dashboard");
+        navigate("/login");
       }
       else{
         toast.error(res.data.error);
       }
     } catch (error) {
-      toast.error("Internal server error");
+      console.log(error);
+      toast.error(error.response.data.error);
     }
   }
  
