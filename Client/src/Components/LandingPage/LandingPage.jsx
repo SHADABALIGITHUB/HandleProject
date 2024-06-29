@@ -1,6 +1,6 @@
 import React from 'react'
 import { CirclePlay } from 'lucide-react'
-import Navbar from './Navbar';
+import NavbarLanding from './NavbarLandingPage';
 
 import './LandingPage.css'
 import Footer from './Footer';
@@ -10,7 +10,7 @@ import Scroll from './Scroll';
 const LandingPage = () => {
     return (
         <div className='container-full text-white bg-gradient-to-r from-gray-900 via-slate-700 to-zinc-900'>
-            <Navbar />
+            <NavbarLanding />
             <div className="container mx-auto w-full pt-2 px-4 md:px-20 md:pt-20 flex flex-col md:flex-row">
                 <div className='md:w-1/2 w-full' >
                     <div className="container mx-auto flex flex-col my-auto align-middle ">

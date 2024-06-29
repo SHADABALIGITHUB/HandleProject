@@ -18,11 +18,14 @@ const Register = () => {
         toast.success(res.data.message);
         navigate(`/auth/otp/${user.email}`);
       }
+      else if(res.data.success===false){
+        toast.success(res.data.message);
+      }
       else{
         toast.error(res.data.error);
       }
     } catch (error) {
-      console.log(error);
+         toast.error("Internal server error");
     }
   }
 

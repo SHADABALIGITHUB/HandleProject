@@ -48,8 +48,8 @@
   
   .input {
     color: #fff;
-    height: 2em;
-    width: 2em;
+    /* height: 2em;
+    width: 2em; */
     float: left;
     text-align: center;
     background: #00000000;
@@ -97,3 +97,40 @@
       transform: translateY(-70px);
     }
   }
+
+  /* YourComponent.css */
+.otp-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.otp-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 12em; /* Width should be 6 times the width of an individual box */
+  z-index: 1;
+}
+
+.otp-boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.otp-box {
+  color: #fff;
+  
+  text-align: center;
+  background: #00000000;
+  border: 1px #369eff solid;
+  border-radius: 10px;
+  transition: all 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}

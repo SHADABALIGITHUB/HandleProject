@@ -13,10 +13,13 @@ import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
 import axiosInstance from './lib/axiosInstance.js'
+// import Test from './Components/OTP/Test.jsx'
+
 
 const isAuthenticated = async ()=>{
   try {
     const res = await axiosInstance.get("/auth/status");
+     console.log(res.data.authenticated);
     return res.data.authenticated;
   } catch (error) {
     console.log(error);
@@ -28,12 +31,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Toaster position="top-center"/>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
 
-          {/* <Route path='' element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>}/> */}
-          <Route path='' element={<Dashboard/>}/>
-          <Route path='about' element={<About/>} />
-          <Route path='blog'  element={<Settings/>} />
+         <Route element={<App />}>
+
+          
+          <Route path='/dashboard' element={isAuthenticated ? <Dashboard/>:<Login/>}/>
+          <Route path='/about' element={<About/>} />
+          <Route path='/blog'  element={<Settings/>} />
 
 
 
@@ -42,12 +46,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
         {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} />
-        {/* <Route path="/register" element={isAuthenticated?<Navigate to="/dashboard"/>:<Register/>} /> */}
         <Route path="/register" element={<Register/>} />
-        <Route path="/pasti" element={<LandingPage/>} />
-        <Route path="*" element={<PageNotFound/>} />
         <Route path="/auth/otp/:email" element={<Otp/>} />
+        <Route path="*" element={<PageNotFound/>} />
+        {/*<Route path="/testing" element={<Test/>} />*/}
 
       </Routes>
     </BrowserRouter>
