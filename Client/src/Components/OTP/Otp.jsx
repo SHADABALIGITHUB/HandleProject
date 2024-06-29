@@ -32,16 +32,13 @@ const Otp = () => {
  
   return (
     <div className='w-screen h-screen flex justify-center items-center bg-black'>
-        <form className={`${style.form} font-Google2 w-48 h-48`}>
+        <form className={`${style.form} font-Google2 w-48 h-48 md:w-80 md:h-80`}>
   <div className={style.content}>
     <p align="center">OTP Verification</p>
     <div className={style.inp}>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
-      <input placeholder="" type="text" className={style.input} maxLength={1} onChange={handleChange}/>
+
+      <input placeholder="" type="text" className={style.input} maxLength={6} onChange={handleChange}/>
+      
     </div>
     <button onClick={handleClick}>Verify</button>
     <svg

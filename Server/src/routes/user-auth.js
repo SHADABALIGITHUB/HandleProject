@@ -11,7 +11,7 @@ router.post("/signup", async (req,res)=>{
 
         const user = await User.findOne({email:reqBody.email});
         if(user){
-            return res.status(400).json({error:"User already present",success:false});
+            return res.status(200).json({message:"User already present",success:false});
         }
         
         const hashedPassword = await bcrypt.hash(reqBody.password,10);
