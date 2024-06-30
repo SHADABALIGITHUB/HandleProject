@@ -4,5 +4,5 @@ export const UserDetails = createContext({
     displayName: "",
     email: "",
     profilePhoto: "",
-
+    
 });

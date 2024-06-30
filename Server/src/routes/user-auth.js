@@ -12,7 +12,7 @@ router.post("/signup", async (req,res)=>{
 
         const user = await User.findOne({email:reqBody.email});
         if(user){
-            return res.status(200).json({message:"User already present",success:false});
+            return res.status(200).json({message:"Email is already registered",success:false});
         }
         
         const hashedPassword = await bcrypt.hash(reqBody.password,10);
@@ -72,29 +72,25 @@ router.patch("/verify/resend",async (req,res)=>{
     }
 })
 
-router.post("/login", async(req,res)=>{
-    try {
-        const {email,password} = req.body;
-
-        const user = await User.findOne({email});
-        if(!user){
-            return res.status(400).json({error:"User does not exist",success:false});
+router.post("/login",async(req,res)=>{
+    passport.authenticate('local',(err,user,info)=>{
+        // console.log(err,user,info);
+        if(err){
+            return res.status(500).json({error:"Internal server error",success:false});
         }
-
-        const isValidPass = bcrypt.compare(password,user.password);
-        if(!isValidPass){
-            return res.status(401).json({error:"Invalid credentials",success:false});
+        if(user){
+            req.login(user,(err)=>{
+                if(err){
+                    return res.status(500).json({error:"Error while logging in",success:false});
+                }
+                return res.status(200).json({message:"Logged in successfully",success:true});
+            })
         }
-
-        // res.cookie("id",user.id,{maxAge:60*60*24*1000, signed:true, httpOnly:true})
-        req.session.userId = user.id;
-        res.status(200).json({message:"Logged in successfully",success:true});
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({error,message:"Internal server error"});
-        // res.redirect(`${process.env.VITE_APP_URL}/servererror`);
-    }
+        else{
+            // console.log(info.message);
+            return res.status(401).json({error:info.message,success:false});
+        }
+    })(req,res)
 })
 
 
@@ -119,8 +115,13 @@ router.get("/google/callback",passport.authenticate("google",{
 })
 
 router.get("/logout",(req,res)=>{
-    req.logOut();
-    res.redirect(`${process.env.VITE_APP_URL}/login`)
+    req.logOut(function(err){
+        if(err){
+            return res.status(500).json({error:err,success:false});
+        }
+        // res.redirect(`${process.env.VITE_APP_URL}/login`);
+        return res.status(200).json({message:"Successfully logged out",success:true});
+    });
 })
 
 module.exports = router;

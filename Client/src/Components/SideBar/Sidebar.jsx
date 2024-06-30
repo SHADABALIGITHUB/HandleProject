@@ -1,10 +1,27 @@
 import { X } from 'lucide-react';
-import React from 'react'
+import React, { useContext } from 'react'
 
 import {Link} from 'react-router-dom'
+import axiosInstance from '../../lib/axiosInstance';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 const Sidebar = ({sidebarstatus,Opensidebar}) => {
-   
-   
+   const navigate = useNavigate();
+
+   const handleClick = async () => {
+    try {
+      let res = await axiosInstance.get("/auth/logout");
+      if(res.data.success===true){
+        toast(res.data.message);
+        // setIsAuth(false); // Check Login.jsx for the TODO
+        // Here I want to set the auth to false so that after logging out I should navigate to login page perfectly otherwise when I am protecting the routes on main.jsx then it is navigating to login route even before the user is unauthenticated due to which the protection provided to the routes(currently commented to prevent errors) are pushing the page to dashboard only because as per it the user is still authenticated.
+        navigate("/login");
+      }
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
+   }
 
   return (
     <div
@@ -225,6 +242,8 @@ const Sidebar = ({sidebarstatus,Opensidebar}) => {
           <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
         </Link>
       </li>
+      <li><button className='bg-white text-black' onClick={handleClick}>Sign Out</button></li>
+      {/* Improve the UI of this button  */}
     </ul>
   </div>
 </div>

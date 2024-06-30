@@ -19,7 +19,7 @@ const Register = () => {
         navigate(`/auth/otp`);
       }
       else if(res.data.success===false){
-        toast.success(res.data.message);
+        toast.error(res.data.message);
       }
       else{
         toast.error(res.data.error);

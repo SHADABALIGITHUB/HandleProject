@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const Login = () => {
 
   const [user, setUser] = useState({email: "", password: "" });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const redirecttoRegister = () => {
      navigate('/register')
     console.log('redirect to register')
@@ -20,6 +20,8 @@ const Login = () => {
       const res = await axiosInstance.post("/auth/login",user);
       if(res.data.success===true){
         toast.success(res.data.message);
+        // setIsAuth(true);  TODO: Create a usestate in context so that we can set auth(variable) to true and then navigate to dashboard where we will check if the auth is true or false.
+        // If it is true then remain on dashboard else navigate to login (check main.jsx to get the idea)
         navigate(`/dashboard`);
       }
       else{
@@ -40,6 +42,7 @@ const Login = () => {
     setUser({...user,[name]:value})
   }
   return (
+    
     <div id='tsparticle' className='w-screen h-screen bg-gradient-to-tr to-zinc-600 from-slate-950 flex justify-center items-center'>
 
 
