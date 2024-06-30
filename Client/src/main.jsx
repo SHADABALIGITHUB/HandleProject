@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Dashboard from './Components/Dashboard/Dashboard.jsx'
@@ -12,17 +12,20 @@ import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
-import axiosInstance from './lib/axiosInstance.js'
+// import axiosInstance from './lib/axiosInstance.js'
 // import Test from './Components/OTP/Test.jsx'
 
-const isAuthenticated = async ()=>{
-  try {
-    const res = await axiosInstance.get("/auth/status");
-    return res.data.authenticated;
-  } catch (error) {
-    console.log(error);
-  }
-}
+// const isAuthenticated = async ()=>{
+//   try {
+//     const res = await axiosInstance.get("/auth/status");
+//     // console.log(res.data.authenticated);
+//     setAuthenticated(res.data.authenticated);
+//     // return res.data.authenticated;
+//   } catch (error) {
+//     // console.log(error);
+//     setAuthenticated( error.response.data.authenticated );
+//   }
+// }
 // console.log(await isAuthenticated());
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -33,8 +36,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
          <Route element={<App />}>
 
-          
-          <Route path='/dashboard' element={await isAuthenticated() ? <Dashboard/>:<Navigate to="/login"/>}/>
+          {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
+          <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/about' element={<About/>} />
           <Route path='/blog' element={<Settings/>} />
 
@@ -45,8 +48,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
         {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
-        <Route path="/" element={await isAuthenticated()?<Navigate to="/dashboard"/>:<LandingPage/>} />
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/login" element={<Login/>} />
+        {/* <Route path="/login" element={isauth?<Navigate to="/dashboard"/>:<Login/>} /> */}
         <Route path="/register" element={<Register/>} />
         <Route path="/auth/otp" element={<Otp/>} />
         <Route path="*" element={<PageNotFound/>} />

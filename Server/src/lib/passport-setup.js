@@ -2,8 +2,29 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user-model");
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require("bcryptjs");
 
 // console.log(process.env.CLIENT_ID);
+
+//passport configure for manual authentication
+passport.use(new LocalStrategy({
+    usernameField:"email"
+}, async function verify(email,password,done){
+    // console.log(email);
+    const user = await User.findOne({email});
+    if(!user){
+        return done(null,false,{message:"User does not exist"});
+    }
+    if(!user.password){
+        return done(null,false,{message:"Something went wrong. Try to log in through Google"});
+    }
+    const isValidPass = await bcrypt.compare(password,user.password);
+    if(!isValidPass){
+        return done(null,false,{message:"Incorrect credentials."});
+    }
+    done(null,user);
+}))
 
 passport.use(new GoogleStrategy({
     clientID:process.env.CLIENT_ID,
