@@ -12,7 +12,7 @@ const Login = () => {
     console.log('redirect to register')
   }
   const login = () => {
-    console.log('/login')
+    console.log("login")
   }
 
   const handleClick = async () => {

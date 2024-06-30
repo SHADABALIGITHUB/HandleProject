@@ -21,7 +21,8 @@ export default {
         mytext: "rgba(var(--mytext))",
         btntext: "rgba(var(--btntext))",
         btnbackground: "rgba(var(--btnbackground))",
-      }
+      },
+      
     },
   },
   plugins: [
