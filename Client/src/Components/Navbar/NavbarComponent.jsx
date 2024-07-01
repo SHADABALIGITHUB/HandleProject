@@ -32,7 +32,7 @@ const NavbarComponent = ({Name,Opensidebar}) => {
      
         <button className="block py-2 px-3 text-mytext rounded md:p-0">Welcome <span className='text-purple-600'>{Name}</span></button>
      </div>
-        <div className='py-3 px-3 text-mytext rounded md:p-0 border border-mytext' onClick={Opensidebar}>
+        <div className='py-3 px-3 text-mytext rounded md:p-0 border border-mytext cursor-pointer' onClick={Opensidebar}>
         <Menu/>
         </div>
     </div>

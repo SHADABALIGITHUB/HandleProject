@@ -7,7 +7,7 @@ const ThemeCard = (props) => {
     
   return (
 
-    <div className={`${props.textcolor} w-96 h-96 flex flex-col items-center gap-10 shadow-lg ${props.bgcolor} border ${props.bordercolor} shadow-copy_secondary rounded-2xl p-10`}>  
+    <div className={`${props.textcolor} w-64 h-64 flex flex-col items-center gap-10 shadow-lg ${props.bgcolor} border ${props.bordercolor} shadow-copy_secondary rounded-2xl p-10`}>  
 
     <h1 className={`border ${props.bgcolor2} ${props.bordercolor} w-full text-center`}> Navbar </h1>
 

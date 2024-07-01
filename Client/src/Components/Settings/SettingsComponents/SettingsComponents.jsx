@@ -1,6 +1,6 @@
 import React from 'react'
-// import SettingsNavigation from './SettingsNavigation'
-
+import SettingsNavigation from './SettingsNavigation'
+import { Outlet } from 'react-router-dom';
 
 import ProfileLogoINSettings from './ProfileLogoINSettings';
 const SettingsComponents = () => {
@@ -21,11 +21,19 @@ const SettingsComponents = () => {
         </button>
       </div>
 
+      <hr />
+
 
 
       <div className='flex'>
-        {/* <SettingsNavigation/>
-        <CurrentSettings/> */}
+       <SettingsNavigation/>
+       <div className='w-4/5 flex p-4 justify-center text-mytext'>
+
+       <Outlet/>
+
+       </div>
+
+         {/* <CurrentSettings/> */}
 
       </div>
 

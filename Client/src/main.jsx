@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Dashboard from './Components/Dashboard/Dashboard.jsx'
@@ -47,10 +47,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/about' element={<About />} />
-          <Route path='/settings' element={<><Outlet/></>} >
-              <Route path='' element={<SettingsComponents/>}/>
+          <Route path='/settings' element={<SettingsComponents/>} >
+              <Route path='' element={<h2> profile of Settings </h2>}/>
               <Route path='blog' element={<ThemeLayout/>}/>
-              <Route path='two' element={<span>Settings 2</span>}/>
+              <Route path='devloper' element={<span> Devloper </span>}/>
+              <Route path='account' element={<span> Account </span>}/>
            </Route>
 
 
