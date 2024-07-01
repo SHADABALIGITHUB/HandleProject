@@ -2,9 +2,10 @@ const router = require("express").Router();
 const User = require("../models/user-model.js");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const sendMail = require("../lib/send-mail.js");
+const sendVerificationMail = require("../lib/send-mail.js");
 const generateOtp = require("../lib/generateOtp.js");
 const jwt = require("jsonwebtoken");
+const sendPasswordResetMail = require("../lib/send-mail.js");
 
 router.post("/signup", async (req,res)=>{
     try {
@@ -23,7 +24,7 @@ router.post("/signup", async (req,res)=>{
         res.cookie("token",token,{maxAge:5*60000,httpOnly:true})
         // await User.create(userData);
 
-        sendMail({email:reqBody.email, otp});
+        sendVerificationMail({email:reqBody.email, otp});
         return res.status(200).json({message:"Otp has been sent to email for verification",success:true});
         
     } catch (error) {
@@ -122,6 +123,34 @@ router.get("/logout",(req,res)=>{
         // res.redirect(`${process.env.VITE_APP_URL}/login`);
         return res.status(200).json({message:"Successfully logged out",success:true});
     });
+})
+
+router.post("/resetpassword/verify",async (req,res)=>{
+    try {
+        const {email} = req.body;
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(401).json({error:"Invalid email. Please register first.",success:false});
+        }
+        // sendPasswordResetMail({email});
+        return res.status(200).json({message:"Verified",success:true});
+    } catch (error) {
+        return res.status(500).json({error,success:false});
+    }
+})
+
+router.patch("/reset/password",async (req,res)=>{
+    try {
+        const {email,password} = req.body;
+        const user = await User.findOne({email});
+        const hashedPassword = await bcrypt.hash(password,10);
+        user.password=hashedPassword;
+        await user.save();
+        return res.status(200).json({message:"Password successfully updated",success:true});
+
+    } catch (error) {
+        return res.status(500).json({error,success:false});
+    }
 })
 
 module.exports = router;

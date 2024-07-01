@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import axiosInstance from '../../lib/axiosInstance';
 import toast from "react-hot-toast";
 
@@ -82,13 +82,12 @@ const Login = () => {
               <label className="text-base font-medium ">
                 Password
               </label>
-              <a
+              <Link
                 className="text-sm font-semibold hover:underline"
-                href="#"
-                title=""
+                to="/reset/password"
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
               <input

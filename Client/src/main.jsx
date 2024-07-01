@@ -13,6 +13,7 @@ import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
 import SettingsComponents from './Components/Settings/SettingsComponents/SettingsComponents.jsx'
+import Password from './Components/Reset/Password.jsx'
 // import AuthProvider from './Context/AuthProvider.jsx'
 
 
@@ -61,6 +62,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/reset/password" element={<Password />} />
         {/* <Route path="/login" element={isauth?<Navigate to="/dashboard"/>:<Login/>} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/auth/otp" element={<Otp />} />

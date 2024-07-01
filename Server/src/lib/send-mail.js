@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-const sendMail = async ({email,otp})=>{
+const sendVerificationMail = async ({email,otp})=>{
     const info = await transporter.sendMail({
         from:process.env.EMAIL,
         to:email,
@@ -24,4 +24,15 @@ const sendMail = async ({email,otp})=>{
     console.log(`Mail sent successfully ${info.messageId}`);
 }
 
-module.exports = sendMail;
+const sendPasswordResetMail = async ({email}) => {
+    const info = await transporter.sendMail({
+        from:process.env.EMAIL,
+        to:email,
+        subject:"Reset password",
+        html:`<p>Click <a href="${process.env.VITE_APP_URL}/reset/?type=password&email=${email}"></a> reset your password</p>`
+    })
+
+    console.log(`Mail sent successfully ${info.messageId}`);
+}
+
+module.exports = {sendVerificationMail,sendPasswordResetMail};
