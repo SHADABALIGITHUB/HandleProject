@@ -62,7 +62,7 @@ const  App=()=> {
         <MyTheme.Provider value={{ Theme, setTheme }}>
           <div className={`${Theme} bg-copy_secondary flex flex-col min-h-screen`}>
             <Navbar Name={displayName} Email={email} Profile={profilePhoto} Opensidebar={open} />
-            <Sidebar sidebarstatus={sidebar} Opensidebar={close} />
+            <Sidebar sidebarstatus={sidebar} Closesidebar={close} />
 
             <Outlet />
 

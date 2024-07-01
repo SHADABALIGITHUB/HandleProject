@@ -1,5 +1,5 @@
 import React from 'react'
-import {MyTheme} from '../../Context/MyTheme';
+import {MyTheme} from '../../../Context/MyTheme';
 import { useContext } from 'react';
 const ThemeCard = (props) => {
      

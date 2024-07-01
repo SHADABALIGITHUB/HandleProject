@@ -7,18 +7,21 @@ import {Link} from 'react-router-dom'
 import axiosInstance from '../../lib/axiosInstance';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
-const Sidebar = ({sidebarstatus,Opensidebar}) => {
+import { useContext } from 'react';
+import Auth from '../../Context/Auth';
+const Sidebar = ({sidebarstatus,Closesidebar}) => {
    const navigate = useNavigate();
+    
+    const {isauth,setIsAuth} = useContext(Auth);
+   
 
    const handleClick = async () => {
     try {
       let res = await axiosInstance.get("/auth/logout");
       if(res.data.success===true){
         toast(res.data.message);
-        // setIsAuth(false); // Check Login.jsx for the TODO
-        // Here I want to set the auth to false so that after logging out I should navigate to login page perfectly otherwise when I am protecting the routes on main.jsx then it is navigating to login route even before the user is unauthenticated due to which the protection provided to the routes(currently commented to prevent errors) are pushing the page to dashboard only because as per it the user is still authenticated.
-        navigate("/login");
+        setIsAuth(false);
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.response.data.error);
@@ -41,7 +44,7 @@ const Sidebar = ({sidebarstatus,Opensidebar}) => {
     data-drawer-hide="drawer-navigation"
     aria-controls="drawer-navigation"
     className="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center text-mytext hover:bg-copy_primary"
-    onClick={Opensidebar} >
+    onClick={Closesidebar} >
    
   <X />
    
@@ -49,16 +52,20 @@ const Sidebar = ({sidebarstatus,Opensidebar}) => {
   <div className="py-4 overflow-y-auto">
     <ul className="space-y-2 font-medium">
       <li>
-        <Link
-          to="/dashboard"
-          className="flex items-center p-2 text-gray-900 rounded-lg text-mytext hover:bg-copy_primary"
+        <button
+          onClick={()=>{
+               navigate('/dashboard')
+               Closesidebar()
+          }}
+          className="flex w-full items-center p-2 text-gray-900 rounded-lg text-mytext hover:bg-copy_primary"
         >
           <LayoutDashboard />
           <span className="ms-3">Dashboard</span>
-        </Link>
+        </button>
       </li>
       <li>
         <button
+        
           type="button"
           className="flex items-center w-full p-2 text-base rounded-lg text-mytext hover:bg-copy_primary"
         
@@ -111,13 +118,18 @@ const Sidebar = ({sidebarstatus,Opensidebar}) => {
         </Link>
       </li>
       <li>
-        <Link
-          to="/settings"
+        <button
+          onClick={
+            ()=>{
+              navigate('/settings')
+              Closesidebar()
+           }
+          }
           className="flex items-center w-full p-2 text-base rounded-lg text-mytext hover:bg-copy_primary"
         >
-         <Settings />
-          <span className="flex-1 ms-3 whitespace-nowrap">Settings</span>
-        </Link>
+          <Settings />
+          <span className="ms-3">Settings</span>
+        </button>
       </li>
       <li>
         <div
