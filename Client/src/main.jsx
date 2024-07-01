@@ -4,14 +4,17 @@ import App from './App.jsx'
 import Dashboard from './Components/Dashboard/Dashboard.jsx'
 import About from './Components/About/About.jsx'
 import Login from './Components/Login/Login.jsx'
-import Settings from './Components/Settings/Settings.jsx'
+import ThemeLayout from './Components/Settings/ThemeLayout.jsx'
 import Register from './Components/Register/Register.jsx'
 import './index.css'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import PageNotFound from './Components/Error/PageNotFound.jsx'
 import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
+// import AuthProvider from './Context/AuthProvider.jsx'
+
+
 // import axiosInstance from './lib/axiosInstance.js'
 // import Test from './Components/OTP/Test.jsx'
 
@@ -27,19 +30,25 @@ import Otp from './Components/OTP/Otp.jsx'
 //   }
 // }
 // console.log(await isAuthenticated());
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <>
-    <Toaster position="top-center"/>
+
+    <Toaster position="top-center" />
+
     <BrowserRouter>
       <Routes>
 
-         <Route element={<App />}>
+        <Route element={<App />}>
 
           {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
-          <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/about' element={<About/>} />
-          <Route path='/blog' element={<Settings/>} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/settings' element={<h2>hello main <Outlet/></h2>} >
+              <Route path='blog' element={<ThemeLayout/>}/>
+              <Route path='two' element={<span>Settings 2</span>}/>
+           </Route>
 
 
 
@@ -48,17 +57,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
         {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
-        <Route path="/" element={<LandingPage/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/login" element={isauth?<Navigate to="/dashboard"/>:<Login/>} /> */}
-        <Route path="/register" element={<Register/>} />
-        <Route path="/auth/otp" element={<Otp/>} />
-        <Route path="*" element={<PageNotFound/>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/auth/otp" element={<Otp />} />
+        <Route path="*" element={<PageNotFound />} />
         {/*<Route path="/testing" element={<Test/>} />*/}
 
       </Routes>
     </BrowserRouter>
-    </>
+
+
+
 
 
   </React.StrictMode>,

@@ -1,37 +1,41 @@
 import { useState, useEffect } from "react"
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./Components/Navbar/NavbarComponent";
 import axiosInstance from "./lib/axiosInstance";
 import { MyTheme } from "./Context/MyTheme";
 import { Outlet } from "react-router-dom";
 import { UserDetails } from "./Context/User";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./Context/Auth";
-// import { set } from "mongoose";
-function App() {
+import Sidebar from './Components/SideBar/Sidebar';
+import Auth from "./Context/Auth"
+
+const  App=()=> {
+
   const [Theme, settheme] = useState('dark');
   const [displayName, setdisplayName] = useState('');
   const [email, setemail] = useState('');
   const [profilePhoto, setprofilePhoto] = useState('');
   const [isauth,setIsAuth] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
+
+  
+
   // const [authenticated,setAuthenticated] = useState(false);
-  const init = async () => {
+  const checkAuth = async () => {
     try {
       const res = await axiosInstance.get("/auth/status");
-      // console.log(res.data.user);
-      // setUser(res.data.user);
-      // setAuthenticated(res.data.authenticated);
       setdisplayName(res.data.user.displayName);
       setemail(res.data.user.email);
       setprofilePhoto(res.data.user.profilePhoto);
+      setIsAuth(res.data.authenticated);
 
     } catch (error) {
-      // setAuthenticated(error.response.data.authenticated);
+     
       console.log(error);
+      setIsAuth(error.response.data.authenticated);
     }
   }
 
   useEffect(() => {
-    init();
+    checkAuth();
   }, [])
 
 
@@ -47,13 +51,18 @@ function App() {
     settheme(theme);
   }
 
+  const open = () => {setSidebar(true);}
+  const close = () => {setSidebar(false);}
+
 
   return (
-    <AuthContext.Provider value={{isauth,setIsAuth}}>
+    
+    <Auth.Provider value={{isauth,setIsAuth,checkAuth}}>
       <UserDetails.Provider value={{ displayName, email, profilePhoto }}>
         <MyTheme.Provider value={{ Theme, setTheme }}>
           <div className={`${Theme} bg-copy_secondary flex flex-col min-h-screen`}>
-            <Navbar Name={displayName} Email={email} Profile={profilePhoto} />
+            <Navbar Name={displayName} Email={email} Profile={profilePhoto} Opensidebar={open} />
+            <Sidebar sidebarstatus={sidebar} Opensidebar={close} />
 
             <Outlet />
 
@@ -63,7 +72,8 @@ function App() {
 
         </MyTheme.Provider>
       </UserDetails.Provider>
-    </AuthContext.Provider>
+     </Auth.Provider>
+    
 
 
 

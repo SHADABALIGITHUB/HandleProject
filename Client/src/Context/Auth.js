@@ -1,6 +1,8 @@
 import { createContext } from "react";
 
-export const AuthContext = createContext({isauth:false});
+const Auth = createContext({isauth:false,setIsAuth:()=>{},checkAuth:()=>{}})
+export default Auth; 
+
 
 // export const AuthProvider = ({ children }) => {
 //     const [isauth, setIsAuth] = useState(false);
@@ -24,3 +26,4 @@ export const AuthContext = createContext({isauth:false});
 //         </AuthContext.Provider>
 //     );
 // };
+

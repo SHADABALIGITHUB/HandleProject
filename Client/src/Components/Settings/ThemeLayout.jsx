@@ -1,7 +1,7 @@
 import React from 'react'
 import ThemeCard from './ThemeCard'
 
-export default function Settings() {
+export default function ThemeLayout() {
   return (
      <div  className='container mx-auto flex-1 flex-wrap gap-10 p-4 font-serif flex justify-center items-center font-bold text-black bg-transparent'>
 
