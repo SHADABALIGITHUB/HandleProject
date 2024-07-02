@@ -35,8 +35,8 @@ import Password from './Components/Reset/Password.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-
+  // <React.StrictMode>
+  <>
     <Toaster position="top-center" />
 
     <BrowserRouter>
@@ -47,12 +47,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/about' element={<About />} />
-          <Route path='/settings' element={<SettingsComponents/>} >
-              <Route path='' element={<h2> profile of Settings </h2>}/>
-              <Route path='blog' element={<ThemeLayout/>}/>
-              <Route path='devloper' element={<span> Devloper </span>}/>
-              <Route path='account' element={<span> Account </span>}/>
-           </Route>
+          <Route path='/settings' element={<SettingsComponents />} >
+            <Route path='' element={<h2> profile of Settings </h2>} />
+            <Route path='blog' element={<ThemeLayout />} />
+            <Route path='devloper' element={<span> Devloper </span>} />
+            <Route path='account' element={<span> Account </span>} />
+          </Route>
 
 
 
@@ -72,10 +72,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       </Routes>
     </BrowserRouter>
+  </>
 
 
 
 
-
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )

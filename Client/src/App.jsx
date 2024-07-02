@@ -22,6 +22,7 @@ const  App=()=> {
   const checkAuth = async () => {
     try {
       const res = await axiosInstance.get("/auth/status");
+      // console.log(res.data.user);
       setdisplayName(res.data.user.displayName);
       setemail(res.data.user.email);
       setprofilePhoto(res.data.user.profilePhoto);

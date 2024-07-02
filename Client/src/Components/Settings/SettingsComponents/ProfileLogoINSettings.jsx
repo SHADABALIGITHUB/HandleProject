@@ -3,7 +3,6 @@ import { UserDetails } from '../../../Context/User';
 import { Skull } from 'lucide-react';
 const ProfileLogoINSettings = () => {
     const { displayName, profilePhoto } = useContext(UserDetails);
-     
  
       
   return (
