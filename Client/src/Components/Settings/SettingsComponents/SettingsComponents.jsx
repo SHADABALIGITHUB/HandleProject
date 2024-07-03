@@ -2,6 +2,7 @@ import React from 'react'
 import SettingsNavigation from './SettingsNavigation'
 import { Outlet } from 'react-router-dom';
 
+
 import ProfileLogoINSettings from './ProfileLogoINSettings';
 const SettingsComponents = () => {
 
@@ -14,20 +15,20 @@ const SettingsComponents = () => {
 
         <ProfileLogoINSettings />
         
-        <button className="max-w-28 relative h-8 items-center justify-center mb-1 me-1 overflow-hidden text-sm  text-mytext rounded-lg group bg-btnbackground">
-          <span className="px-1.5 mx-0.5 py-1 transition-all ease-in duration-75 bg-background hover:bg-transparent rounded-md group-hover:bg-opacity-0">
+        <button className="max-w-28 p-2 relative flex text-btntext h-8 items-center justify-center overflow-hidden text-sm rounded-lg bg-btnbackground">
+          
           Sharable Profile
-          </span>
+         
         </button>
       </div>
 
-      <hr />
 
 
 
       <div className='flex'>
        <SettingsNavigation/>
-       <div className='w-4/5 flex p-4 justify-center text-mytext'>
+
+       <div className='w-5/6 flex p-4 justify-center text-mytext'>
 
        <Outlet/>
 

@@ -121,7 +121,7 @@ const Sidebar = ({sidebarstatus,Closesidebar}) => {
         <button
           onClick={
             ()=>{
-              navigate('/settings')
+              navigate('/settings/profile')
               Closesidebar()
            }
           }

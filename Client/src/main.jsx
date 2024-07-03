@@ -14,6 +14,7 @@ import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
 import SettingsComponents from './Components/Settings/SettingsComponents/SettingsComponents.jsx'
 import Password from './Components/Reset/Password.jsx'
+import NewProjectCreation from './Components/Dashboard/ProjectCreation/NewProjectCreation.jsx'
 // import AuthProvider from './Context/AuthProvider.jsx'
 
 
@@ -38,37 +39,38 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <>
     <Toaster position="top-center" />
+    {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
+    {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
+    {/* <Route path="/login" element={isauth?<Navigate to="/dashboard"/>:<Login/>} /> */}
+    {/*<Route path="/testing" element={<Test/>} />*/}
 
     <BrowserRouter>
       <Routes>
 
         <Route element={<App />}>
 
-          {/* <Route path='/dashboard' element={isauth? <Dashboard/>:<Navigate to="/login"/>}/> */}
+
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/createproject' element={<NewProjectCreation/>} />
           <Route path='/about' element={<About />} />
           <Route path='/settings' element={<SettingsComponents />} >
-            <Route path='' element={<h2> profile of Settings </h2>} />
-            <Route path='blog' element={<ThemeLayout />} />
-            <Route path='devloper' element={<span> Devloper </span>} />
-            <Route path='account' element={<span> Account </span>} />
+               <Route path='profile' element={<h2> profile of Settings </h2>} />
+               <Route path='theme' element={<ThemeLayout />} />
+               <Route path='devloper' element={<span> Devloper </span>} />
+               <Route path='account' element={<span> Account </span>} />
           </Route>
-
-
-
-
         </Route>
 
 
-        {/* <Route path="/login" element={isAuthenticated?<Navigate to="/dashboard"/>:<Login/>} /> */}
+
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reset/password" element={<Password />} />
-        {/* <Route path="/login" element={isauth?<Navigate to="/dashboard"/>:<Login/>} /> */}
+
         <Route path="/register" element={<Register />} />
         <Route path="/auth/otp" element={<Otp />} />
         <Route path="*" element={<PageNotFound />} />
-        {/*<Route path="/testing" element={<Test/>} />*/}
+
 
       </Routes>
     </BrowserRouter>

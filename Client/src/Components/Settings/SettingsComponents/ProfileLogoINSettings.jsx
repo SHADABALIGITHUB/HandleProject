@@ -16,9 +16,9 @@ const ProfileLogoINSettings = () => {
     ) : (
       <span className='rounded-full text-mytext p-2 border border-mytext'> <Skull /></span>
     )}
-    <div className="font-medium dark:text-white">
+    <div className="font-medium text-mytext">
       <div>{displayName?displayName:"Anonymous User"}</div>
-      <div className="text-sm text-gray-500 dark:text-gray-400">
+      <div className="text-sm text-mytext">
         Joined in August 2014
       </div>
     </div>
