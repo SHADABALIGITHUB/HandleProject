@@ -1,16 +1,29 @@
 
 import React from 'react'
+// import Project from './Projects/Project';
+import SearchBox from './SearchBox';
+import ProjectNavigation from './Projects/ProjectNavigation';
+import ProjectContainer from './Projects/ProjectContainer';
 
 
 const Dashboard = () => {
   
   return (
-    <div className={`container mx-auto flex-wrap gap-10 p-4 font-serif flex justify-center items-center font-bold text-black`}>
+    <>
+   
+     <SearchBox/>
 
+   
+    <div className='flex'>
+
+      <ProjectNavigation/>
       
+       
+      <ProjectContainer/>
 
-
+    
     </div>
+    </>
   )
 }
 
