@@ -6,12 +6,12 @@ const Project = ({projectTitle,projectDescription}) => {
           
  <div
   
-  className="cursor-pointer block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  className="cursor-pointer block max-w-sm p-6  rounded-lg shadow bg-background text-mytext hover:shadow-lg hover:bg-copy_primary transition duration-300 ease-in-out"
 >
-  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+  <h5 className="mb-2 text-2xl font-bold tracking-tight text-mytext">
     {projectTitle}
   </h5>
-  <p className="font-normal text-gray-700 dark:text-gray-400">
+  <p className="font-normal text-mytext">
     {projectDescription}
   </p>
 </div>
