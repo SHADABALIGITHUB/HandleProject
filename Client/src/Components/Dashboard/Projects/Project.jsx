@@ -6,7 +6,7 @@ const Project = ({projectTitle,projectDescription}) => {
           
  <div
   
-  className="cursor-pointer block max-w-sm p-6  rounded-lg shadow bg-background text-mytext hover:shadow-lg hover:bg-copy_primary transition duration-300 ease-in-out"
+   className="cursor-pointer block max-w-sm p-6  rounded-lg shadow bg-background text-mytext hover:shadow-lg hover:bg-copy_primary transition duration-300 ease-in-out"
 >
   <h5 className="mb-2 text-2xl font-bold tracking-tight text-mytext">
     {projectTitle}

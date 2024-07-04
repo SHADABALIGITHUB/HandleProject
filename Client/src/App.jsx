@@ -4,6 +4,7 @@ import axiosInstance from "./lib/axiosInstance";
 import { MyTheme } from "./Context/MyTheme";
 import { Outlet } from "react-router-dom";
 import { UserDetails } from "./Context/User";
+import  Project  from "./Context/Project";
 import Sidebar from './Components/SideBar/Sidebar';
 import Auth from "./Context/Auth"
 
@@ -15,10 +16,8 @@ const  App=()=> {
   const [profilePhoto, setprofilePhoto] = useState('');
   const [isauth,setIsAuth] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const [projects,setProjects] = useState([]);
 
-  
-
-  // const [authenticated,setAuthenticated] = useState(false);
   const checkAuth = async () => {
     try {
       const res = await axiosInstance.get("/auth/status");
@@ -39,6 +38,14 @@ const  App=()=> {
     checkAuth();
   }, [])
 
+     
+   const setProject = (newprojects) => {
+ 
+    setProjects((prevProjects) => [...prevProjects, newprojects]);
+
+}
+
+
 
 
 
@@ -57,10 +64,12 @@ const  App=()=> {
 
 
   return (
-    
+   
     <Auth.Provider value={{isauth,setIsAuth,checkAuth}}>
       <UserDetails.Provider value={{ displayName, email, profilePhoto }}>
         <MyTheme.Provider value={{ Theme, setTheme }}>
+           <Project.Provider value={{projects,setProject}}>
+   
           <div className={`${Theme} bg-copy_secondary flex flex-col min-h-screen`}>
             <Navbar Name={displayName} Email={email} Profile={profilePhoto} Opensidebar={open} />
             <Sidebar sidebarstatus={sidebar} Closesidebar={close} />
@@ -70,7 +79,7 @@ const  App=()=> {
 
 
           </div>
-
+          </Project.Provider>
         </MyTheme.Provider>
       </UserDetails.Provider>
      </Auth.Provider>
