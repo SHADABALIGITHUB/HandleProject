@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const User = require("../models/user-model.js");
+const User = require("../../models/user/user-model.js");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const sendVerificationMail = require("../lib/send-mail.js");
-const generateOtp = require("../lib/generateOtp.js");
+const sendVerificationMail = require("../../lib/send-mail.js");
+const generateOtp = require("../../lib/generateOtp.js");
 const jwt = require("jsonwebtoken");
-const sendPasswordResetMail = require("../lib/send-mail.js");
+const sendPasswordResetMail = require("../../lib/send-mail.js");
 
 router.post("/signup", async (req,res)=>{
     try {
