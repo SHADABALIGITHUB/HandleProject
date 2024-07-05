@@ -1,7 +1,8 @@
 const express = require("express");
 require("dotenv").config({path:"src/.env"});
 const cors = require("cors");
-const user = require("./routes/user-auth.js");
+const userRouter = require("./routes/user/user-auth.js");
+const projectRouter = require("./routes/project/project-route.js");
 const connect = require("./lib/dbconfig.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -40,7 +41,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use("/auth",user);
+app.use("/auth",userRouter);
+app.use("/project",projectRouter);
 
 app.listen(port,()=>{
     console.log(`App is running on port ${port}`);
