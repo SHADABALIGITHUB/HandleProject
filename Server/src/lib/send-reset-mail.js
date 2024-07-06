@@ -13,17 +13,6 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-const sendVerificationMail = async ({email,otp})=>{
-    const info = await transporter.sendMail({
-        from:process.env.EMAIL,
-        to:email,
-        subject:"OTP for user verification",
-        text:`Your OTP is ${otp}`
-    })
-
-    console.log(`Mail sent successfully ${info.messageId}`);
-}
-
 const sendPasswordResetMail = async ({email,token}) => {
     console.log("sending mail")
     try {
@@ -41,4 +30,4 @@ const sendPasswordResetMail = async ({email,token}) => {
     }
 }
 
-module.exports = sendVerificationMail;
+module.exports = sendPasswordResetMail;

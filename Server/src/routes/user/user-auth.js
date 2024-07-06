@@ -5,7 +5,7 @@ const passport = require("passport");
 const sendVerificationMail = require("../../lib/send-mail.js");
 const generateOtp = require("../../lib/generateOtp.js");
 const jwt = require("jsonwebtoken");
-const sendPasswordResetMail = require("../../lib/send-mail.js");
+const sendPasswordResetMail = require("../../lib/send-reset-mail.js");
 
 router.post("/signup", async (req,res)=>{
     try {
@@ -132,8 +132,11 @@ router.post("/resetpassword/verify",async (req,res)=>{
         if(!user){
             return res.status(401).json({error:"Invalid email. Please register first.",success:false});
         }
-        // sendPasswordResetMail({email});
-        return res.status(200).json({message:"Verified",success:true});
+
+        const payload = {id:user._id};
+        const token = jwt.sign(payload, process.env.SESSION_SECRET);
+        sendPasswordResetMail({email,token});
+        return res.status(200).json({message:"Link has been sent to your mail",success:true});
     } catch (error) {
         return res.status(500).json({error,success:false});
     }

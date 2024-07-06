@@ -13,7 +13,6 @@ import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
 import SettingsComponents from './Components/Settings/SettingsComponents/SettingsComponents.jsx'
-import Password from './Components/Reset/Password.jsx'
 import NewProjectCreation from './Components/Dashboard/ProjectCreation/NewProjectCreation.jsx'
 import ResetPassword from './Components/Reset/ResetPassword.jsx'
 import ChangeAndConfirmPasswordRedirectPage from './Components/Reset/ChangeAndConfirmPasswordRedirectPage.jsx'
@@ -67,8 +66,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/reset/password" element={<Password />} />
-        <Route path="/test" element={<ChangeAndConfirmPasswordRedirectPage/>} />
+        <Route path="/reset/password" element={<ResetPassword />} />
+        <Route path="/reset/:email/:token" element={<ChangeAndConfirmPasswordRedirectPage/>} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/auth/otp" element={<Otp />} />
