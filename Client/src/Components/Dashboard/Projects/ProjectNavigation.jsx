@@ -11,10 +11,10 @@ const ProjectNavigation = () => {
 
 
   return (
-       <div className='w-1/6 bg-copy_secondary min-h-screen font-Google2'>
+       <div className='sm:w-1/6 w-full flex flex-col items-center bg-copy_secondary min-h-screen font-Google2'>
              
 
-               <div className='flex items-center justify-between m-2'>
+               <div className='flex w-11/12 items-center justify-between m-2'>
 
                <h2 className='text-mytext'>Recents</h2>
 
@@ -22,7 +22,7 @@ const ProjectNavigation = () => {
 
                </div>
 
-               {   projects.length === 0 ? <h1 className='text-sm flex items-center justify-center md:gap-2 font-bold text-mytext'> <ArchiveX /> No Projects</h1> :
+               {   projects.length === 0 ? <h1 className='text-sm flex items-center justify-center md:gap-2 font-bold text-mytext'> <ArchiveX size={"14px"}/> No Projects</h1> :
                      
                     projects.map((project,index) => (
                         <ProjectNavigationElement key={index} projectname={project.projectTitle} />

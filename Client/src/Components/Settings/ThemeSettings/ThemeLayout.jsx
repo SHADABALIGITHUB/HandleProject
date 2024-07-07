@@ -8,6 +8,7 @@ export default function ThemeLayout() {
         <ThemeCard value="light" bgcolor="bg-[rgba(245,245,245)]" textcolor="text-[rgba(0,0,0)]"  bgcolor2="bg-[rgba(215,215,215)]"  bordercolor="border-[rgba(0,0,0)]" />
         <ThemeCard value="dark" bgcolor="bg-[rgba(40,40,40)]" textcolor="text-[rgba(250,250,250)]"  bgcolor2="bg-[rgba(20,20,20)]"  bordercolor="border-[rgba(250,250,250)]" />
         <ThemeCard value="red" bgcolor="bg-[rgba(255,171,171)]" textcolor="text-[rgba(220,220,220)]"  bgcolor2="bg-[rgba(255,48,48)]" bordercolor="border-[rgba(220,220,220)]" />
+        <ThemeCard value="blue" bgcolor="bg-[rgb(255,255,255)]" textcolor="text-[rgb(0,0,0)]"  bgcolor2="bg-[rgba(205,231,229)]" bordercolor="border-[rgba(0,0,0)]" />
         
     
 

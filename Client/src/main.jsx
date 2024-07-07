@@ -13,9 +13,11 @@ import LandingPage from './Components/LandingPage/LandingPage.jsx'
 import { Toaster } from 'react-hot-toast'
 import Otp from './Components/OTP/Otp.jsx'
 import SettingsComponents from './Components/Settings/SettingsComponents/SettingsComponents.jsx'
-import NewProjectCreation from './Components/Dashboard/ProjectCreation/NewProjectCreation.jsx'
 import ResetPassword from './Components/Reset/ResetPassword.jsx'
 import ChangeAndConfirmPasswordRedirectPage from './Components/Reset/ChangeAndConfirmPasswordRedirectPage.jsx'
+import CreateNewPorject from './Components/Dashboard/ProjectCreation/CreateNewPorject.jsx'
+import ProjectDisplay from './Components/Dashboard/ProjectDisplay/ProjectDisplay.jsx'
+import Profile from './Components/Dashboard/Profile/Profile.jsx'
 // import AuthProvider from './Context/AuthProvider.jsx'
 
 
@@ -52,7 +54,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/createproject' element={<NewProjectCreation/>} />
+          <Route path='/createproject' element={<CreateNewPorject/>} />
+          <Route path='/projects/:id' element={<ProjectDisplay/>} />
+          <Route path='/profile/:id' element={<Profile/>} />
           <Route path='/about' element={<About />} />
           <Route path='/settings' element={<SettingsComponents />} >
                <Route path='profile' element={<h2> profile of Settings </h2>} />
@@ -67,6 +71,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reset/password" element={<ResetPassword />} />
+
         <Route path="/reset/:email/:token" element={<ChangeAndConfirmPasswordRedirectPage/>} />
 
         <Route path="/register" element={<Register />} />
