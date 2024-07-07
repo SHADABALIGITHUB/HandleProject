@@ -57,7 +57,7 @@ const Sidebar = ({sidebarstatus,Closesidebar}) => {
                navigate('/dashboard')
                Closesidebar()
           }}
-          className="flex w-full items-center p-2 text-gray-900 rounded-lg text-mytext hover:bg-copy_primary"
+          className="flex w-full items-center p-2 rounded-lg text-mytext hover:bg-copy_primary"
         >
           <LayoutDashboard />
           <span className="ms-3">Dashboard</span>
@@ -78,16 +78,18 @@ const Sidebar = ({sidebarstatus,Closesidebar}) => {
         
       </li>
       <li>
-        <Link
-          to="/dashboard"
+        <button 
+          onClick={ ()=>{
+            navigate('/profile/40') 
+            Closesidebar()}}
           className="flex items-center w-full p-2 text-base rounded-lg text-mytext hover:bg-copy_primary"
         >
           <CircleUserRound />
-          <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
+          <span className="ms-3">Profile</span>
           {/* <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
             Pro
           </span> */}
-        </Link>
+        </button>
       </li>
       <li>
         <Link

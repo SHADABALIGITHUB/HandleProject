@@ -22,7 +22,7 @@ const CreateNewPorject = () => {
      const projectName = projectNameRef.current.value;
      const projectDescription = projectDescriptionRef.current.value;
      const projectVisibility = projectvisiblityRef;
-      console.log(projectVisibility);
+      
  
      const newProject = {
        projectTitle: projectName,
