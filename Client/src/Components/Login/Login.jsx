@@ -51,7 +51,7 @@ const Login = () => {
     <div className="xl:mx-auto xl:w-full shadow-md p-4 xl:max-w-sm 2xl:max-w-md">
       <div className="mb-2 flex justify-center" />
       <h2 className="text-center text-2xl font-bold leading-tight flex justify-around items-center">
-        <span className='text-purple-500'>Login in </span> to Kaisen<img className="w-12" src="./Logo.png" alt="" />
+        <span className='text-purple-500'>Login in </span> to Kaisen<img className="w-12" src="https://ucarecdn.com/b0f331f2-d034-49ca-bbd9-489fba647518/ninjaremovebgpreview.png" alt="" />
       </h2>
       <p className="mt-2 text-center text-sm text-gray-200 cursor-pointer" onClick={redirecttoRegister}>
         Don't have an account? Create a free account

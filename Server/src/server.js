@@ -23,7 +23,7 @@ connect();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(cors({
-    origin:[process.env.VITE_APP_URL,process.env.Mobile_APP_URL],
+    origin:[process.env.VITE_APP_URL],
     credentials:true
 }))
 
