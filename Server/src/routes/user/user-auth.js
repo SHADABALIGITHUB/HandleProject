@@ -6,6 +6,7 @@ const sendVerificationMail = require("../../lib/send-mail.js");
 const generateOtp = require("../../lib/generateOtp.js");
 const jwt = require("jsonwebtoken");
 const sendPasswordResetMail = require("../../lib/send-reset-mail.js");
+const generateRandomUser = require("./randomUser.js");
 
 router.post("/signup", async (req,res)=>{
     try {
@@ -16,9 +17,20 @@ router.post("/signup", async (req,res)=>{
             return res.status(200).json({message:"Email is already registered",success:false});
         }
         
+        let isUnique = false;
+        let username = null;
+        while(!isUnique){
+            username = generateRandomUser();
+            const ispresent = await User.findOne({username});
+            if(!ispresent){
+                isUnique=true;
+            }
+        }
+
         const hashedPassword = await bcrypt.hash(reqBody.password,10);
         const otp = generateOtp();
-        const userData = {displayName:reqBody.username, email:reqBody.email, password:hashedPassword, isverifiedtoken:otp};
+        const userData = {displayName:reqBody.username, email:reqBody.email, password:hashedPassword, 
+            username,isverifiedtoken:otp};
 
         const token = jwt.sign(userData,process.env.SESSION_SECRET);
         res.cookie("token",token,{maxAge:5*60000,httpOnly:true})

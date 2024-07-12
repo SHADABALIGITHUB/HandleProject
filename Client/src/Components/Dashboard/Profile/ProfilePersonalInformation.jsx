@@ -6,7 +6,7 @@ const ProfilePersonalInformation = () => {
     const { displayName, profilePhoto, email } = useContext(UserDetails);
 
 
-
+    console.log(profilePhoto);
     return (
 
 
