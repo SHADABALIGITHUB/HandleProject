@@ -14,7 +14,7 @@ const NavbarComponent = ({Name,Opensidebar}) => {
   <div className="mx-auto flex flex-wrap items-center justify-between p-2 md:p-4">
     
   <div className="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="Logo.png" className="h-8 rounded-full" alt="Kaisen" />
+      <img src="https://ucarecdn.com/b0f331f2-d034-49ca-bbd9-489fba647518/ninjaremovebgpreview.png" className="h-8 rounded-full" alt="Kaisen" />
       <span className="self-center text-2xl font-semibold whitespace-nowrap text-mytext">kaisen</span>
   </div>
   

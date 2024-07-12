@@ -44,7 +44,7 @@ const ChangeAndConfirmPasswordRedirectPage = () => {
     <div className="flex font-Google2  flex-col items-center bg-gradient-to-r from-gray-900 via-slate-700 to-zinc-900 justify-center h-screen dark">
       <div className="w-full md:max-w-lg max-w-sm  bg-gray-800 rounded-lg shadow-md md:p-6 p-4 m-4">
         <h2 className="text-2xl font-bold text-gray-200 mb-4 flex justify-center items-center">
-          <img className="w-10 h-10" src="Logo.png" alt="Kaisen" />  Reset Password
+          <img className="w-10 h-10" src="https://ucarecdn.com/b0f331f2-d034-49ca-bbd9-489fba647518/ninjaremovebgpreview.png" alt="Kaisen" />  Reset Password
         </h2>
         <form className="flex flex-col">
 

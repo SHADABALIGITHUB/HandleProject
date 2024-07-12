@@ -9,7 +9,7 @@ const Footer = () => {
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
             <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="Logo.png" className="h-8" alt="kaisen Logo" />
+                <img src="https://ucarecdn.com/b0f331f2-d034-49ca-bbd9-489fba647518/ninjaremovebgpreview.png" className="h-8" alt="kaisen Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Kaisen</span>
             </Link>
             <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
