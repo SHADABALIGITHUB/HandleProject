@@ -16,7 +16,7 @@ function Navbar() {
    return (
        <div className="container-full flex flex-wrap p-5 flex-col md:flex-row items-center">
            <Link className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-               <img src='Logo.png' className="w-100 h-10 mr-2" alt="Logo" />
+               <img src='https://ucarecdn.com/b0f331f2-d034-49ca-bbd9-489fba647518/ninjaremovebgpreview.png' className="w-100 h-10 mr-2" alt="Logo" />
                <h2></h2>
            </Link>
            <nav className="md:ml-auto flex gap-2 flex-wrap items-center text-base justify-center">
