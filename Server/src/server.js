@@ -11,6 +11,7 @@ const passportSetup = require("./lib/passport-setup.js");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const app = express();
+const profileRouter = require("./routes/profile/profile-route.js")
 
 
 const port = process.env.PORT;
@@ -45,18 +46,7 @@ app.use(passport.session());
 
 //   shadab code start
 
-app.get('/profile/:username', async (req, res) => {
-    const username = req.params.username;
-    try {
-      const user = await User.findOne({ username });
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-      res.json(user);
-    } catch (err) {
-      res.status(500).json({ message: 'Server error' });
-    }
-  });
+app.use('/profile',profileRouter);
 
 //  shadab code end
 

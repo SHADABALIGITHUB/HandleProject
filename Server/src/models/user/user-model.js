@@ -46,7 +46,8 @@ const UserSchema = mongoose.Schema({
         type:[String]
     },
     bio:{
-        type:[String]
+        type:String,
+        maxlength:[1000,"Can't be more than 1000 characters"]
     },
     links:[String],
     badges:{

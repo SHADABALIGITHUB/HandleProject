@@ -61,9 +61,21 @@ passport.use(new GoogleStrategy({
             }
         }
         else {
+            if (!user.username) {
+                let isUnique = false;
+                let username = null;
+                while (!isUnique) {
+                    username = generateRandomUser();
+                    const ispresent = await User.findOne({ username });
+                    if (!ispresent) {
+                        isUnique = true;
+                    }
+                }
+                user.username = username;
+            }
             user.displayName = profile.displayName;
             user.googleId = profile.id,
-            user.firstName = profile.name.givenName;
+                user.firstName = profile.name.givenName;
             user.lastName = profile.name.familyName;
             user.profilePhoto = profile.photos[0].value,
                 await user.save();

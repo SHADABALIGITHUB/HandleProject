@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import ProfilePersonalInformation from './ProfilePersonalInformation'
 import ProfileReadmeFile from './ProfileReadmeFile'
 import { useParams } from 'react-router-dom';
+import axiosInstance from '../../../lib/axiosInstance';
 
 const Profile = () => {
     const { username } = useParams();
@@ -11,12 +12,9 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
           try {
-            const response = await fetch(`http://localhost:3000/profile/${username}`);
-            if (!response.ok) {
-              throw new Error('User not found');
-            }
-            const data = await response.json();
-             setUser(data);
+            const response = await axiosInstance.get(`http://localhost:3000/profile/${username}`);
+            
+            setUser(response.data.user);
           } catch (err) {
              console.log(err);
           }
