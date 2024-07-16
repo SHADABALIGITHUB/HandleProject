@@ -29,8 +29,7 @@ router.post("/signup", async (req,res)=>{
 
         const hashedPassword = await bcrypt.hash(reqBody.password,10);
         const otp = generateOtp();
-        const userData = {displayName:reqBody.username, email:reqBody.email, password:hashedPassword, 
-            username,isverifiedtoken:otp};
+        const userData = {username:reqBody.username, email:reqBody.email, password:hashedPassword,isverifiedtoken:otp};
 
         const token = jwt.sign(userData,process.env.SESSION_SECRET);
         res.cookie("token",token,{maxAge:5*60000,httpOnly:true})

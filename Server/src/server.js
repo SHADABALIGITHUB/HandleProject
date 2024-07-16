@@ -6,16 +6,12 @@ const projectRouter = require("./routes/project/project-route.js");
 const connect = require("./lib/dbconfig.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const User = require("./models/user/user-model.js");
 const passportSetup = require("./lib/passport-setup.js");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const app = express();
-// const fs = require('fs');
-// const https = require('https');
 
-// const privateKey = fs.readFileSync(__dirname + '/../ssl/localhost.key', 'utf8');
-// const certificate = fs.readFileSync(__dirname + '/../ssl/localhost.crt', 'utf8');
-// const credentials = { key: privateKey, cert: certificate };
 
 const port = process.env.PORT;
 connect();
@@ -47,18 +43,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+//   shadab code start
+
+app.get('/profile/:username', async (req, res) => {
+    const username = req.params.username;
+    try {
+      const user = await User.findOne({ username });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(user);
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+
+//  shadab code end
+
 app.use("/auth",userRouter);
 app.use("/project",projectRouter);
-
-// const httpsServer = https.createServer(credentials, app);
-
-// httpsServer.listen(port, '0.0.0.0', () => {
-//     console.log(`Server is running on https://0.0.0.0:${port}`);
-//   });
-
-// app.listen(port,'0.0.0.0',()=>{
-//     console.log(`App is running on port ${port}`);
-// })
 
 app.listen(port,()=>{
     console.log(`App is running on port ${port}`);

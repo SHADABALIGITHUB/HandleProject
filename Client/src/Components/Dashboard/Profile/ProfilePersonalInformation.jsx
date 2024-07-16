@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { UserDetails } from '../../../Context/User'
 import { Link } from 'react-router-dom';
 
-const ProfilePersonalInformation = () => {
-    const { displayName, profilePhoto, email } = useContext(UserDetails);
+const ProfilePersonalInformation = ({username,email}) => {
+    // const { displayName, profilePhoto, email } = useContext(UserDetails);
 
 
-    console.log(profilePhoto);
+    
     return (
 
 
@@ -21,7 +21,7 @@ const ProfilePersonalInformation = () => {
             <div className="flex items-center justify-around gap-20 mb-2">
                 <Link to="/settings/profile">
                     <div className='w-48 h-48 border border-btntext relative flex  items-center justify-center rounded-full'>
-                        <img className='w-full h-full rounded-full p-2' src={profilePhoto} alt="" />
+                        <img className='w-full h-full rounded-full p-2' src="https://pics.craiyon.com/2023-05-29/69d183130848490eae6fbb912c584b36.webp" alt="" />
 
                         {/* <span className='text-xs absolute bottom-0 bg-btnbackground p-1 rounded-lg'>click to changes</span> */}
 
@@ -30,10 +30,12 @@ const ProfilePersonalInformation = () => {
                 </Link>
                 <div >
                     <p className="text-base font-semibold leading-none text-mytext">
-                        {displayName ? displayName : "Kaisen user"}
+                        {/* {displayName ? displayName : "Kaisen user"} */}
+                        {username}
                     </p>
                     <p className="mb-3 text-sm font-normal">
-                        {email ? email : "@kaisen"}
+                        {/* {email ? email : "@kaisen"} */}
+                        {email}
                     </p>
                     <p className="mb-4 text-sm my-text">
                         Open-source contributor.

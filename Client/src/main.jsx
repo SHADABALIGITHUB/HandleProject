@@ -56,7 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/createproject' element={<CreateNewPorject/>} />
           <Route path='/projects/:id' element={<ProjectDisplay/>} />
-          <Route path='/profile/:id' element={<Profile/>} />
+          <Route path='/profile/:username' element={<Profile/>} />
           <Route path='/about' element={<About />} />
           <Route path='/settings' element={<SettingsComponents />} >
                <Route path='profile' element={<h2> profile of Settings </h2>} />

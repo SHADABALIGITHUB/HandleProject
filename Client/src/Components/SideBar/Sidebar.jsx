@@ -13,6 +13,7 @@ const Sidebar = ({sidebarstatus,Closesidebar}) => {
    const navigate = useNavigate();
     
     const {isauth,setIsAuth} = useContext(Auth);
+    
    
 
    const handleClick = async () => {
