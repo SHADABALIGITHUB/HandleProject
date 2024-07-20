@@ -10,9 +10,10 @@ import Auth from "./Context/Auth"
 
 const  App=()=> {
 
-  const [Theme, settheme] = useState('dark');
+  const [Theme, settheme] = useState();
   const [displayName, setdisplayName] = useState('');
   const [email, setemail] = useState('');
+  const [username, setusername] = useState('');
   const [profilePhoto, setprofilePhoto] = useState('');
   const [isauth,setIsAuth] = useState(false);
   const [sidebar, setSidebar] = useState(false);
@@ -22,9 +23,15 @@ const  App=()=> {
     try {
       const res = await axiosInstance.get("/auth/status");
       // console.log(res.data.user);
-      setdisplayName(res.data.user.displayName);
+      if(res.data.user.username){
+        
+      setdisplayName(res.data.user.username);
+    }else{
+      setdisplayName("Kaisen User");
+    }
       setemail(res.data.user.email);
       setprofilePhoto(res.data.user.profilePhoto);
+      setusername(res.data.user.username);
       setIsAuth(res.data.authenticated);
 
     } catch (error) {
@@ -66,7 +73,7 @@ const  App=()=> {
   return (
    
     <Auth.Provider value={{isauth,setIsAuth,checkAuth}}>
-      <UserDetails.Provider value={{ displayName, email, profilePhoto }}>
+      <UserDetails.Provider value={{displayName, email, profilePhoto,username }}>
         <MyTheme.Provider value={{ Theme, setTheme }}>
            <Project.Provider value={{projects,setProject}}>
    

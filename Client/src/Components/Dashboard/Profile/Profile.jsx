@@ -1,5 +1,6 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import ProfilePersonalInformation from './ProfilePersonalInformation'
+import { UserDetails } from '../../../Context/User'
 import ProfileReadmeFile from './ProfileReadmeFile'
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../../lib/axiosInstance';
@@ -7,7 +8,12 @@ import axiosInstance from '../../../lib/axiosInstance';
 const Profile = () => {
     const { username } = useParams();
     const [user, setUser] = useState(null);
-    // const [error, setError] = useState(null);
+    const { displayName } = useContext(UserDetails);
+    const history = useNavigate();
+
+
+    console.log(displayName);
+
 
     useEffect(() => {
         const fetchUser = async () => {

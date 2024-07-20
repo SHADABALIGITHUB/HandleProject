@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserDetails } from '../../../Context/User'
+
 import { Link } from 'react-router-dom';
 
 const ProfilePersonalInformation = ({username,email}) => {
