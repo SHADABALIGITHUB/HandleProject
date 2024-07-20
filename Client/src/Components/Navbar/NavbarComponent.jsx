@@ -28,7 +28,7 @@ const NavbarComponent = ({Name,Opensidebar}) => {
      
         <NavLink to="/projects" className={({isActive})=>`font-bold flex items-center text-sm ${isActive?"text-blue-500 hover:text-mytext/50":"text-mytext hover:bg-blue-500"}rounded-lg`}>Projects</NavLink>
      
-        <NavLink to="/dashboard" className={({isActive})=>`flex font-bold items-center text-sm ${isActive?"text-blue-500 hover:text-mytext/50":"text-mytext hover:bg-blue-500"}rounded-lg`}>Pricing</NavLink>
+        <NavLink to="/" className={({isActive})=>`flex font-bold items-center text-sm ${isActive?"text-blue-500 hover:text-mytext/50":"text-mytext hover:bg-blue-500"}rounded-lg`}>Pricing</NavLink>
      
         <button className="block py-2 px-3 text-mytext rounded md:p-0">Welcome <span className='text-purple-600'>{Name}</span></button>
      </div>

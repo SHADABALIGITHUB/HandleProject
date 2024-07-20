@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
+    username: {
+        type: String,
+        unique: true,
+        required: [true, "can't be blank"],
+        minLength: [5, "can't be less than 5"],
+        maxlength: [15, "can't be greater than 15"]
+    },
     displayName: {
         type: String
     },
@@ -35,28 +42,101 @@ const UserSchema = mongoose.Schema({
     isforgotpasswordtokenexpiry: {
         type: Date
     },
-    username: {
+
+    skillset: {
+        type: [String]
+    },
+    bio: {
+        type: [String]
+    },
+    // links: [String],
+    badges: {
+        type: Number,
+        enum: [1, 2, 3, 4] // 4->bronze ..... 1->platinum
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    bio: {
         type: String,
-        unique:true,    
-        required: [true, "can't be blank"],
-        minLength: [5, "can't be less than 5"],
-        maxlength: [15, "can't be greater than 15"]
+        trim: true,
+        maxlength: 160,
     },
-    skillset:{
-        type:[String]
+    location: {
+        type: String,
+        trim: true,
+        maxlength: 100,
     },
-    bio:{
-        type:[String]
+    website: {
+        type: String,
+        trim: true,
+        maxlength: 100,
     },
-    links:[String],
-    badges:{
-        type:Number,
-        enum:[1,2,3,4] // 4->bronze ..... 1->platinum
+    company: {
+        type: String,
+        trim: true,
+        maxlength: 100,
     },
-    createdAt:{
-        type:Date,
-        default:Date.now()
-    }
+    project: {
+        type: [String],
+        ref: 'Project'
+    },
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    }],
+    likedProjects: [{  // projects liked by other users user
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
+    }],
+    mylikedProjects: [{  // projects liked by you
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
+    }],
+    savedProjects: [{  // projects saved by you 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
+    }],
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+    },
+
+    socialLinks: {
+        twitter: {
+            type: String,
+            trim: true,
+        },
+        linkedin: {
+            type: String,
+            trim: true,
+        },
+        github: {
+            type: String,
+            trim: true,
+        },
+        personal: {
+            type: String,
+            trim: true,
+        },
+    },
+    notifications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Notification',
+    }],
+    mobileNumber: {
+        type: String,
+        trim: true,
+        enum: [1, 0] // 1-> private ..... 0-> public
+    },
+
+
+
 })
 
 module.exports = mongoose.models.users || mongoose.model("users", UserSchema);
