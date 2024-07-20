@@ -18,6 +18,7 @@ import ChangeAndConfirmPasswordRedirectPage from './Components/Reset/ChangeAndCo
 import CreateNewPorject from './Components/Dashboard/ProjectCreation/CreateNewPorject.jsx'
 import ProjectDisplay from './Components/Dashboard/ProjectDisplay/ProjectDisplay.jsx'
 import Profile from './Components/Dashboard/Profile/Profile.jsx'
+import GoogleLogin from './Components/Login/GoogleLogin.jsx'
 // import AuthProvider from './Context/AuthProvider.jsx'
 
 
@@ -71,6 +72,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reset/password" element={<ResetPassword />} />
+        <Route path="/login/:googleid" element={<GoogleLogin/>} />
 
         <Route path="/reset/:email/:token" element={<ChangeAndConfirmPasswordRedirectPage/>} />
 

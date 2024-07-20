@@ -49,9 +49,9 @@ const ProjectSchema = mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     // change commit to our commit model ans pulls to our pull model
-    commits: [{ type: ObjectId, ref: 'Commit' }],
-    issues: [{ type: ObjectId, ref: 'Issue' }],
-    pullRequests: [{ type: ObjectId, ref: 'PullRequest' }],
+    commits: [{ type: String, ref: 'Commit' }],
+    issues: [{ type: String, ref: 'Issue' }],
+    pullRequests: [{ type: String, ref: 'PullRequest' }],
 
 })
 

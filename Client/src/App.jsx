@@ -10,7 +10,7 @@ import Auth from "./Context/Auth"
 
 const  App=()=> {
 
-  const [Theme, settheme] = useState();
+  const [Theme, settheme] = useState('dark');
   const [displayName, setdisplayName] = useState('');
   const [email, setemail] = useState('');
   const [username, setusername] = useState('');

@@ -45,6 +45,10 @@ app.use(passport.session());
 
 //   shadab code start
 
+app.get('/',(req,res)=>{
+    res.send("Hello World");
+})
+
 app.get('/profile/:username', async (req, res) => {
     const username = req.params.username;
     try {
@@ -57,6 +61,35 @@ app.get('/profile/:username', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   });
+
+app.post('/username/check', async (req, res) => {
+      const { username } = req.body;
+      if (!username) {
+        return res.status(200).json({ message: 'Username already taken' });
+      }
+      if(username.length <=4 ){  
+        return res.status(200).json({ message: 'Username already taken' });
+      }
+      const usernamePattern = /^[a-zA-Z][a-zA-Z0-9]*$/;
+
+      if (!usernamePattern.test(username)) {
+        return res.status(200).json({ message: 'Username already taken' });
+      }
+
+      // backend check 
+    try {
+      const user = await User.findOne({ username });
+      if (user) {
+        return res.status(200).json({ message: 'Username already taken' });
+      }
+      res.status(200).json({ message: 'Username available' });
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  }
+
+);
+
 
 //  shadab code end
 

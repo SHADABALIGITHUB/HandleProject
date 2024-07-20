@@ -123,7 +123,9 @@ router.get("/google",passport.authenticate("google",{scope:['profile','email']})
 router.get("/google/callback",passport.authenticate("google",{
     failureRedirect:`${process.env.VITE_APP_URL}/register`,failureMessage:true
 }),(req,res)=>{
-    res.redirect(`${process.env.VITE_APP_URL}/dashboard`);
+    // console.log(req.user);
+    res.redirect(`${process.env.VITE_APP_URL}/login/${req.user.firstName}`);
+
 })
 
 router.get("/logout",(req,res)=>{
@@ -152,6 +154,7 @@ router.post("/resetpassword/verify",async (req,res)=>{
         return res.status(500).json({error,success:false});
     }
 })
+
 
 router.patch("/reset/password",async (req,res)=>{
     try {
