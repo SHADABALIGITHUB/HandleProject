@@ -69,6 +69,10 @@ const UserSchema = mongoose.Schema({
         trim: true,
         maxlength: 100,
     },
+    bio:{
+        type:String,
+        maxlength:[1000,"Can't be more than 1000 characters"]
+    },
     website: {
         type: String,
         trim: true,
