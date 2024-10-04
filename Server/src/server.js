@@ -20,7 +20,7 @@ connect();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(cors({
-    origin:[process.env.VITE_APP_URL,'https://handleproject-frontend.onrender.com'],
+    origin:[process.env.VITE_APP_URL],
     credentials:true
 }))
 
